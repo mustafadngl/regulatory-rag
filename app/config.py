@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://postgres:postgres@localhost:5432/regrag"
     redis_url: str = "redis://localhost:6379/0"
 
+    # Networks that terminate TLS with their own root CA need that bundle passed explicitly.
+    ca_bundle: str | None = None
+
     llm_api_base: str = "https://api.openai.com/v1"
     llm_api_key: str = ""
     llm_model: str = "gpt-4o-mini"

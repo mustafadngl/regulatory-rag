@@ -8,7 +8,7 @@ semantically self-contained and makes precise citation possible.
 import re
 from dataclasses import dataclass, field
 
-from app.corpus.models import Chunk
+from app.corpus.models import Article, Chunk
 
 CHAPTER_RE = re.compile(r"^CHAPTER\s+([IVXLCDM]+)\b(.*)$", re.MULTILINE)
 ARTICLE_RE = re.compile(r"^Article\s+(\d+)\s*$", re.MULTILINE)
@@ -17,14 +17,6 @@ SENTENCE_RE = re.compile(r"(?<=[.;:])\s+")
 
 DEFAULT_MAX_CHARS = 1200
 DEFAULT_MIN_CHARS = 300
-
-
-@dataclass
-class Article:
-    number: str
-    title: str
-    body: str
-    chapter: str | None = None
 
 
 @dataclass
@@ -169,7 +161,8 @@ def chunk_article(
             current = _Buffer()
 
     if current.texts:
-        if buffers and current.length < min_chars:
+        fits = buffers and buffers[-1].length + current.length <= max_chars
+        if fits and current.length < min_chars:
             for paragraph, text in zip(current.paragraphs, current.texts, strict=True):
                 buffers[-1].add(_Segment(paragraph=paragraph, text=text))
         else:
@@ -187,6 +180,7 @@ def chunk_article(
                 body=body,
                 source=source,
                 chapter=article.chapter,
+                section=article.section,
                 article=article.number,
                 article_title=article.title or None,
                 paragraph=paragraph,
@@ -196,13 +190,22 @@ def chunk_article(
     return chunks
 
 
+def chunk_articles(
+    articles: list[Article],
+    source: str,
+    max_chars: int = DEFAULT_MAX_CHARS,
+    min_chars: int = DEFAULT_MIN_CHARS,
+) -> list[Chunk]:
+    chunks: list[Chunk] = []
+    for article in articles:
+        chunks.extend(chunk_article(article, source, max_chars=max_chars, min_chars=min_chars))
+    return chunks
+
+
 def chunk_document(
     text: str,
     source: str,
     max_chars: int = DEFAULT_MAX_CHARS,
     min_chars: int = DEFAULT_MIN_CHARS,
 ) -> list[Chunk]:
-    chunks: list[Chunk] = []
-    for article in parse_articles(text):
-        chunks.extend(chunk_article(article, source, max_chars=max_chars, min_chars=min_chars))
-    return chunks
+    return chunk_articles(parse_articles(text), source, max_chars=max_chars, min_chars=min_chars)

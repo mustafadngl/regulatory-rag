@@ -74,7 +74,8 @@ curl http://localhost:8000/health
 
 - [x] Service skeleton, containerisation, CI pipeline green from the first commit
 - [x] Structure-aware chunking of regulatory text, with citations
-- [ ] Corpus fetch, embeddings and pgvector storage
+- [x] Corpus fetch and parsing from the EU Publications Office
+- [ ] Embeddings and pgvector storage
 - [ ] Retrieval and cited answer generation
 - [ ] Golden question set and evaluation harness
 - [ ] Evaluation gate wired into CI
@@ -90,6 +91,10 @@ curl http://localhost:8000/health
 
 **CI before features.** The evaluation gate is the point of this project, so the pipeline exists before there is anything to evaluate.
 
+**The Publications Office Cellar service as the corpus source, not the EUR-Lex website.** The public EUR-Lex pages sit behind an AWS WAF that answers HTTP clients with `202` and `x-amzn-waf-action: challenge`, so no scripted fetch can retrieve them. Cellar serves the same documents through content negotiation at `publications.europa.eu/resource/celex/{celex}` and is the supported machine-readable interface. Downloads are cached on disk so repeat runs and tests never touch the network.
+
+**Parsing the Official Journal's semantic classes rather than flattening to text.** Cellar XHTML marks articles as `p.oj-ti-art`, titles as `p.oj-sti-art` and divisions as `p.oj-ti-section-1`, which is far more reliable than pattern-matching prose. Two traps are worth knowing about: chapters and sections share the *same* CSS class and are distinguishable only by their heading text, and lettered points such as `(a)` are marked up as two-cell tables that must be rejoined to the paragraph they belong to.
+
 **Structure-aware chunking rather than a fixed character window.** Regulations are already organised into chapters, articles and numbered paragraphs, so chunk boundaries follow that structure: short paragraphs merge, long ones split on sentence boundaries, and no chunk ever spans two articles. Two consequences follow. Every chunk maps to exactly one citation such as `Article 6(2)`, which is what makes grounded answers verifiable. And each chunk carries a breadcrumb header (`Article 9 > Risk management system > paragraph 1`) so that an embedded fragment retains the context a fixed-window splitter would have discarded.
 
 **Character counts as the chunk budget, not tokens.** A tokeniser dependency buys precision this project does not yet need. If the budget starts mattering — for context-window packing or cost control — this is the first thing to revisit.
@@ -99,6 +104,8 @@ curl http://localhost:8000/health
 - Not legal advice, and not a compliance tool. It answers questions about regulatory text; it does not interpret them for a specific situation.
 - English-language source texts only.
 - The golden question set is hand-written and therefore small; it catches regressions, it does not certify correctness.
+- Recitals and annexes are not indexed. Recitals carry interpretive weight in EU law, so some questions are unanswerable by design until they are added.
+- Source text is reproduced verbatim, including defects in the official publication. Article 1 of Regulation (EU) 2024/1689, for example, carries a stray backtick in its title upstream.
 
 ## License
 

@@ -1,4 +1,19 @@
+from dataclasses import dataclass
+
 from pydantic import BaseModel, Field
+
+
+@dataclass
+class Article:
+    """One article of a regulation, before it is split into retrievable chunks."""
+
+    number: str
+    title: str
+    body: str
+    chapter: str | None = None
+    chapter_title: str | None = None
+    section: str | None = None
+    section_title: str | None = None
 
 
 class Chunk(BaseModel):
@@ -9,6 +24,7 @@ class Chunk(BaseModel):
     body: str = Field(description="Source text without the breadcrumb header.")
     source: str
     chapter: str | None = None
+    section: str | None = None
     article: str | None = None
     article_title: str | None = None
     paragraph: str | None = None
