@@ -16,10 +16,13 @@ class Settings(BaseSettings):
     # Networks that terminate TLS with their own root CA need that bundle passed explicitly.
     ca_bundle: str | None = None
 
-    llm_api_base: str = "https://api.openai.com/v1"
+    llm_api_base: str = "https://integrate.api.nvidia.com/v1"
     llm_api_key: str = ""
-    llm_model: str = "gpt-4o-mini"
-    embedding_model: str = "text-embedding-3-small"
+    llm_model: str = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+    embedding_model: str = "nvidia/nemotron-3-embed-1b"
+    embedding_dimensions: int = 2048
+    embedding_batch_size: int = 32
+    request_timeout: float = 120.0
 
 
 @lru_cache
