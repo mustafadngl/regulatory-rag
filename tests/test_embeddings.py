@@ -9,7 +9,7 @@ from app.corpus.embeddings import EmbeddingClient, EmbeddingError
 @pytest.fixture(autouse=True)
 def no_sleep(monkeypatch: pytest.MonkeyPatch) -> None:
     """Retries use exponential backoff; tests should not actually wait."""
-    monkeypatch.setattr("app.corpus.embeddings.time.sleep", lambda _: None)
+    monkeypatch.setattr("app.upstream.time.sleep", lambda _: None)
 
 
 def build_client(handler, **kwargs) -> EmbeddingClient:

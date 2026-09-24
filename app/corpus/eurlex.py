@@ -12,6 +12,7 @@ import httpx
 from bs4 import BeautifulSoup, Tag, XMLParsedAsHTMLWarning
 
 from app.corpus.models import Article
+from app.text import normalise_typography
 
 CELLAR_URL = "http://publications.europa.eu/resource/celex/{celex}"
 XHTML = "application/xhtml+xml"
@@ -52,7 +53,7 @@ def fetch_regulation(
 
 
 def _normalise(text: str) -> str:
-    return text.replace("\u00a0", " ").strip()
+    return normalise_typography(text).strip()
 
 
 def _classes(tag: Tag) -> list[str]:

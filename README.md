@@ -60,14 +60,40 @@ ruff check .
 uvicorn app.main:app --reload
 ```
 
+## Ingesting the corpus
+
+```bash
+python -m app.corpus.ingest --celex 32024R1689
+```
+
+Regulation (EU) 2024/1689 (the AI Act) yields 113 articles and 464 chunks, embedded in about
+20 seconds across 15 requests. Re-running is idempotent.
+
 ## Example request
 
 ```bash
-curl http://localhost:8000/health
+curl -X POST http://localhost:8000/ask \
+  -H 'Content-Type: application/json' \
+  -d '{"question": "What are the penalties for non-compliance?"}'
 ```
 
 ```json
-{ "status": "ok", "version": "0.1.0", "environment": "local" }
+{
+  "question": "What are the penalties for non-compliance?",
+  "answer": "Fines up to EUR 15 000 000 or 3 % of turnover (Article 99(4)); up to EUR 35 000 000 or 7 % for breaching the prohibitions in Article 5 (Article 99(2-3)).",
+  "grounded": true,
+  "citations": [
+    { "citation": "Article 99(4)", "article": "99", "chapter": "XII", "score": 0.4538 }
+  ],
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+  "usage": { "prompt_tokens": 1246, "completion_tokens": 795, "retrieval_ms": 308.8, "generation_ms": 19976.9 }
+}
+```
+
+Questions the corpus cannot answer are refused rather than guessed:
+
+```json
+{ "answer": "The provided extracts do not answer this question.", "grounded": false, "citations": [] }
 ```
 
 ## Roadmap
@@ -75,8 +101,8 @@ curl http://localhost:8000/health
 - [x] Service skeleton, containerisation, CI pipeline green from the first commit
 - [x] Structure-aware chunking of regulatory text, with citations
 - [x] Corpus fetch and parsing from the EU Publications Office
-- [ ] Embeddings and pgvector storage
-- [ ] Retrieval and cited answer generation
+- [x] Embeddings and pgvector storage
+- [x] Retrieval and cited answer generation
 - [ ] Golden question set and evaluation harness
 - [ ] Evaluation gate wired into CI
 - [ ] Tracing, token and cost metrics
@@ -97,6 +123,12 @@ curl http://localhost:8000/health
 
 **Structure-aware chunking rather than a fixed character window.** Regulations are already organised into chapters, articles and numbered paragraphs, so chunk boundaries follow that structure: short paragraphs merge, long ones split on sentence boundaries, and no chunk ever spans two articles. Two consequences follow. Every chunk maps to exactly one citation such as `Article 6(2)`, which is what makes grounded answers verifiable. And each chunk carries a breadcrumb header (`Article 9 > Risk management system > paragraph 1`) so that an embedded fragment retains the context a fixed-window splitter would have discarded.
 
+**Exact nearest-neighbour search, with no vector index.** pgvector's HNSW and IVFFlat indexes accept at most 2,000 dimensions; the embedding model emits 2,048 and rejects any request for fewer. At 464 chunks an exact scan runs in 10–50 ms and is perfectly accurate, so an approximate index would trade accuracy for nothing. If the corpus grows enough to need one, casting to `halfvec` lifts the HNSW limit to 4,000 dimensions — verified to work against this schema.
+
+**Refusal is a success condition.** The prompt instructs the model to reply with a fixed refusal string when the retrieved extracts do not support an answer, and the API reports this as `grounded: false` with no citations. A confident answer assembled from the model's own memory of EU law is the precise failure this project exists to detect.
+
+**Typography is normalised on the way in and out.** Both the Official Journal and the model emit no-break spaces and non-breaking hyphens, so `Article 99(4)` may arrive as `Article\u202f99(4)`. These are invisible in a terminal and break the exact string matching that citation checks depend on.
+
 **Character counts as the chunk budget, not tokens.** A tokeniser dependency buys precision this project does not yet need. If the budget starts mattering — for context-window packing or cost control — this is the first thing to revisit.
 
 ## Known limitations
@@ -106,6 +138,8 @@ curl http://localhost:8000/health
 - The golden question set is hand-written and therefore small; it catches regressions, it does not certify correctness.
 - Recitals and annexes are not indexed. Recitals carry interpretive weight in EU law, so some questions are unanswerable by design until they are added.
 - Source text is reproduced verbatim, including defects in the official publication. Article 1 of Regulation (EU) 2024/1689, for example, carries a stray backtick in its title upstream.
+- Answer latency is poor and highly variable: retrieval is consistently around 300 ms, but generation has been measured between 2 and 95 seconds on a free-tier endpoint that returns `ResourceExhausted` under load. Most of that is the reasoning model's own output. Streaming responses, and measuring time-to-first-token rather than total time, is the intended fix.
+- Answer quality is currently asserted by hand. The evaluation harness that makes this claim measurable is the next piece of work, and until it exists no quality claim here should be taken at face value.
 
 ## License
 

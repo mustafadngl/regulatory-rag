@@ -23,6 +23,11 @@ class Settings(BaseSettings):
     embedding_dimensions: int = 2048
     embedding_batch_size: int = 32
     request_timeout: float = 120.0
+    retrieval_top_k: int = 5
+
+    # Nemotron models read this as a control directive and skip extended reasoning, which cuts
+    # answer latency roughly sevenfold. Set it to an empty string for providers that ignore it.
+    llm_system_prefix: str = "detailed thinking off"
 
 
 @lru_cache
