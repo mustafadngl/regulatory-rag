@@ -23,11 +23,11 @@ class Retrieved:
 
 
 class ChunkStore:
-    def __init__(self, engine: Engine, dimensions: int) -> None:
+    def __init__(self, engine: Engine, dimensions: int, table_name: str = "chunks") -> None:
         self._engine = engine
         self._metadata = MetaData()
         self._table = Table(
-            "chunks",
+            table_name,
             self._metadata,
             Column("chunk_id", Text, primary_key=True),
             Column("source", Text, nullable=False),

@@ -13,6 +13,22 @@ jobs:
   quality:
     name: Lint and test
     runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: regrag
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d regrag"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
     steps:
       - uses: actions/checkout@v4
 
@@ -33,6 +49,8 @@ jobs:
         run: ruff format --check .
 
       - name: Test
+        env:
+          DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/regrag
         run: pytest
 
   docker:
