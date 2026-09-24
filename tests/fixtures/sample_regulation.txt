@@ -1,0 +1,61 @@
+CHAPTER I
+
+GENERAL PROVISIONS
+
+Article 1
+
+Subject matter
+
+The purpose of this Regulation is to improve the functioning of the internal market and
+promote the uptake of human-centric and trustworthy artificial intelligence, while ensuring
+a high level of protection of health, safety and fundamental rights.
+
+Article 2
+
+Scope
+
+1. This Regulation applies to providers placing on the market or putting into service AI
+systems in the Union, irrespective of whether those providers are established or located
+within the Union or in a third country.
+
+2. This Regulation applies to deployers of AI systems that have their place of establishment
+or are located within the Union.
+
+3. This Regulation does not apply to AI systems developed or used exclusively for military,
+defence or national security purposes, regardless of the type of entity carrying out those
+activities.
+
+CHAPTER III
+
+HIGH-RISK AI SYSTEMS
+
+Article 6
+
+Classification rules for high-risk AI systems
+
+1. An AI system shall be considered high-risk where both of the following conditions are
+met: the AI system is intended to be used as a safety component of a product, and the
+product is required to undergo a third-party conformity assessment.
+
+2. In addition to the high-risk AI systems referred to in paragraph 1, AI systems referred
+to in Annex III shall be considered high-risk.
+
+Article 9
+
+Risk management system
+
+1. A risk management system shall be established, implemented, documented and maintained
+in relation to high-risk AI systems. The risk management system shall be understood as a
+continuous iterative process planned and run throughout the entire lifecycle of a high-risk
+AI system, requiring regular systematic review and updating. It shall comprise the
+identification and analysis of the known and the reasonably foreseeable risks that the
+high-risk AI system can pose to health, safety or fundamental rights when used in
+accordance with its intended purpose. It shall also comprise the estimation and evaluation
+of the risks that may emerge when the high-risk AI system is used in accordance with its
+intended purpose and under conditions of reasonably foreseeable misuse. It shall further
+comprise the evaluation of other risks possibly arising based on the analysis of data
+gathered from the post-market monitoring system.
+
+2. The risks referred to in paragraph 1 shall concern only those which may be reasonably
+mitigated or eliminated through the development or design of the high-risk AI system, or
+the provision of adequate technical information.
