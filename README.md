@@ -1,5 +1,7 @@
 # Regulatory RAG
 
+[![CI](https://github.com/mustafadngl/regulatory-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/mustafadngl/regulatory-rag/actions/workflows/ci.yml)
+
 Question answering over EU regulatory texts (EU AI Act, GDPR) that returns **cited answers** and, more importantly, **proves its own answer quality in CI**.
 
 Most retrieval-augmented generation demos stop at "it produced a plausible answer." This service treats answer quality as a testable property: a golden question set, retrieval and groundedness metrics, and a build that fails when quality regresses.
