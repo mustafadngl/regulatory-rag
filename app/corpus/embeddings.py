@@ -11,6 +11,8 @@ from collections.abc import Iterable, Sequence
 
 import httpx
 
+from app.rate_limit import RateLimiter
+
 logger = logging.getLogger(__name__)
 
 RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
@@ -36,11 +38,13 @@ class EmbeddingClient:
         timeout: float = 120.0,
         ca_bundle: str | None = None,
         max_attempts: int = 4,
+        requests_per_minute: int = 40,
         transport: httpx.BaseTransport | None = None,
     ) -> None:
         self._model = model
         self._batch_size = batch_size
         self._max_attempts = max_attempts
+        self._limiter = RateLimiter(requests_per_minute)
         self._client = httpx.Client(
             base_url=api_base.rstrip("/"),
             headers={"Authorization": f"Bearer {api_key}"},
@@ -79,6 +83,7 @@ class EmbeddingClient:
         }
 
         for attempt in range(1, self._max_attempts + 1):
+            self._limiter.acquire()
             try:
                 response = self._client.post("/embeddings", json=payload)
             except httpx.TransportError as exc:

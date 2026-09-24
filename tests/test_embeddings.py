@@ -13,6 +13,7 @@ def no_sleep(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def build_client(handler, **kwargs) -> EmbeddingClient:
+    kwargs.setdefault("requests_per_minute", 0)  # pacing is covered by the rate limiter's tests
     return EmbeddingClient(
         "https://example.invalid/v1",
         "test-key",
