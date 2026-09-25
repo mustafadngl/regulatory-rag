@@ -17,3 +17,6 @@ data/processed/
 .idea/
 .vscode/
 .DS_Store
+
+# Personal career planning. Deliberately never committed to this public repository.
+career/
