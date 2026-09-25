@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     embedding_dimensions: int = 2048
     embedding_batch_size: int = 32
     request_timeout: float = 120.0
+    upstream_max_attempts: int = 6
     retrieval_top_k: int = 5
 
     # Nemotron models read this as a control directive and skip extended reasoning, which cuts

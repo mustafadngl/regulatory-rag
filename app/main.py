@@ -28,6 +28,7 @@ def build_rag_service(settings: Settings) -> RagService:
         batch_size=settings.embedding_batch_size,
         timeout=settings.request_timeout,
         ca_bundle=settings.ca_bundle,
+        max_attempts=settings.upstream_max_attempts,
     )
     chat = ChatClient(
         settings.llm_api_base,
@@ -35,6 +36,7 @@ def build_rag_service(settings: Settings) -> RagService:
         settings.llm_model,
         timeout=settings.request_timeout,
         ca_bundle=settings.ca_bundle,
+        max_attempts=settings.upstream_max_attempts,
     )
     return RagService(
         store,

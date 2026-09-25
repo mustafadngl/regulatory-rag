@@ -96,6 +96,34 @@ Questions the corpus cannot answer are refused rather than guessed:
 { "answer": "The provided extracts do not answer this question.", "grounded": false, "citations": [] }
 ```
 
+## Answer quality
+
+Quality is measured, not asserted. A golden set of 28 questions over Regulation (EU) 2024/1689
+— 24 answerable, 4 deliberately outside the corpus — is scored on every run, and the build fails
+when any metric falls below its threshold.
+
+```bash
+python -m app.evaluation.run --output evaluation/report.json
+```
+
+| Metric | Measured | Threshold | Meaning |
+| --- | --- | --- | --- |
+| Retrieval recall | 1.00 | ≥ 0.90 | An expected article was retrieved |
+| Mean reciprocal rank | 0.98 | — | How near the top it appeared |
+| Citation accuracy | 1.00 | ≥ 0.85 | The answer cited an expected article |
+| Refusal accuracy | 1.00 | ≥ 1.00 | Out-of-scope questions were refused |
+| False refusal rate | 0.00 | ≤ 0.10 | Answerable questions wrongly refused |
+
+Three exit codes, and the distinction matters: `0` passed, `1` a threshold was breached, and
+`2` the run was inconclusive because too many questions could not be evaluated. A provider
+outage is an availability problem, not a quality regression, and a gate that confuses the two
+trains people to ignore it.
+
+Reports keep every answer, so `--rescore` recomputes metrics for a past run without paying for
+the model calls again. That is not a convenience: the first real run scored three answers as
+uncited, and rescoring after fixing the citation pattern took fifteen seconds instead of the
+twenty-two minutes the original run had cost.
+
 ## Roadmap
 
 - [x] Service skeleton, containerisation, CI pipeline green from the first commit
@@ -103,8 +131,8 @@ Questions the corpus cannot answer are refused rather than guessed:
 - [x] Corpus fetch and parsing from the EU Publications Office
 - [x] Embeddings and pgvector storage
 - [x] Retrieval and cited answer generation
-- [ ] Golden question set and evaluation harness
-- [ ] Evaluation gate wired into CI
+- [x] Golden question set and evaluation harness
+- [x] Evaluation gate wired into CI
 - [ ] Tracing, token and cost metrics
 - [ ] Cloud deployment
 - [ ] Retrieval strategy benchmark and written case study
@@ -139,7 +167,8 @@ Questions the corpus cannot answer are refused rather than guessed:
 - Recitals and annexes are not indexed. Recitals carry interpretive weight in EU law, so some questions are unanswerable by design until they are added.
 - Source text is reproduced verbatim, including defects in the official publication. Article 1 of Regulation (EU) 2024/1689, for example, carries a stray backtick in its title upstream.
 - Answer latency is poor and highly variable: retrieval is consistently around 300 ms, but generation has been measured between 2 and 95 seconds on a free-tier endpoint that returns `ResourceExhausted` under load. Most of that is the reasoning model's own output. Streaming responses, and measuring time-to-first-token rather than total time, is the intended fix.
-- Answer quality is currently asserted by hand. The evaluation harness that makes this claim measurable is the next piece of work, and until it exists no quality claim here should be taken at face value.
+- The golden set is 28 hand-written questions. It catches regressions; it does not certify correctness, and perfect scores on it mean the gate is calibrated too loosely as much as they mean the system is good.
+- Citations are matched by article number, so an answer citing the right article for the wrong reason still scores as correct. Checking that a claim is actually supported by the cited text needs a stronger method than string matching.
 
 ## License
 

@@ -1,0 +1,578 @@
+{
+  "totals": {
+    "questions": 28,
+    "evaluated": 28,
+    "errored": 0,
+    "answerable": 24,
+    "unanswerable": 4,
+    "passed": 28
+  },
+  "metrics": {
+    "retrieval_recall": 1.0,
+    "mean_reciprocal_rank": 0.9792,
+    "citation_accuracy": 1.0,
+    "refusal_accuracy": 1.0,
+    "false_refusal_rate": 0.0
+  },
+  "questions": [
+    {
+      "id": "prohibited-practices",
+      "question": "Which AI practices are prohibited?",
+      "answerable": true,
+      "expected_articles": [
+        "5"
+      ],
+      "retrieved_articles": [
+        "5"
+      ],
+      "cited": [
+        "5"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Prohibited AI practices include subliminal/manipulative techniques, exploitation of age-disability-socioeconomic vulnerabilities, long-term social scoring causing unjustified treatment, criminal risk profiling based solely on traits, untargeted facial-recognition scraping, emotion inference in workplaces/education, and biometric categorisation for protected attributes (Article 5(2))."
+    },
+    {
+      "id": "penalties",
+      "question": "What are the penalties for non-compliance?",
+      "answerable": true,
+      "expected_articles": [
+        "99",
+        "100"
+      ],
+      "retrieved_articles": [
+        "99",
+        "80",
+        "100"
+      ],
+      "cited": [
+        "5",
+        "99",
+        "100"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Non-compliance with Article 5 AI prohibitions can incur up to EUR 35 million or 7 % of turnover (Article 99(2-3)). Non-compliance with other obligations (Article 99(4)) can incur up to EUR 15 million or 3 % of turnover. Union bodies face up to EUR 1.5 million (Article 100(2-3)). Providers not bringing non-high-risk systems into compliance are fined per (Article 99)."
+    },
+    {
+      "id": "entry-into-force",
+      "question": "When does this Regulation enter into force?",
+      "answerable": true,
+      "expected_articles": [
+        "113"
+      ],
+      "retrieved_articles": [
+        "113",
+        "112",
+        "1"
+      ],
+      "cited": [
+        "113"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The Regulation enters into force on the twentieth day after its publication in the Official Journal of the European Union. (Article 113)"
+    },
+    {
+      "id": "provider-obligations",
+      "question": "What obligations do providers of high-risk AI systems have?",
+      "answerable": true,
+      "expected_articles": [
+        "16"
+      ],
+      "retrieved_articles": [
+        "16",
+        "25",
+        "26"
+      ],
+      "cited": [
+        "16"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Providers must ensure compliance with Section 2, indicate name/address, have a quality management system (Article 16(1)), keep documentation and logs (Article 16(1)), undergo conformity assessment (Article 16(1)), draw up EU declaration (Article 16(1)), affix CE marking (Article 16(1)), comply with registration (Article 16(1)), take corrective actions (Article 16(2)), demonstrate conformity on request (Article 16(2)), ensure accessibility (Article 16(2))."
+    },
+    {
+      "id": "high-risk-classification",
+      "question": "How is an AI system classified as high-risk?",
+      "answerable": true,
+      "expected_articles": [
+        "6"
+      ],
+      "retrieved_articles": [
+        "6",
+        "80",
+        "9"
+      ],
+      "cited": [
+        "6"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "An AI system is high-risk if it is listed in Annex III (Article 6(2)) or if it is intended as a safety component of a product covered by EU harmonisation legislation and must undergo a third-party conformity assessment (Article 6(1)) Additionally, any system that performs profiling of natural persons is always high-risk (Article 6(3))."
+    },
+    {
+      "id": "transparency-to-users",
+      "question": "Must people be told when they are interacting with an AI system?",
+      "answerable": true,
+      "expected_articles": [
+        "50"
+      ],
+      "retrieved_articles": [
+        "50",
+        "26",
+        "13"
+      ],
+      "cited": [
+        "50"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Yes. Providers must inform natural persons that they are interacting with an AI system, unless the fact is obvious to a reasonably well-informed, observant and circumspect person (Article 50(1))."
+    },
+    {
+      "id": "risk-management",
+      "question": "What must a risk management system for a high-risk AI system include?",
+      "answerable": true,
+      "expected_articles": [
+        "9"
+      ],
+      "retrieved_articles": [
+        "9",
+        "8"
+      ],
+      "cited": [
+        "9"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "It must be a continuous iterative process covering the entire lifecycle, including (a) identification and analysis of known and foreseeable risks, (b) estimation and evaluation of risks under intended use and misuse, (c) evaluation of other risks from post-market monitoring, and (d) adoption of appropriate risk-management measures, with residual risk judged acceptable (Article 9(1-2), Article 9(5), Article 9(6), Article 9(9-10))."
+    },
+    {
+      "id": "data-governance",
+      "question": "What requirements apply to training data and data governance?",
+      "answerable": true,
+      "expected_articles": [
+        "10"
+      ],
+      "retrieved_articles": [
+        "10",
+        "3"
+      ],
+      "cited": [
+        "10"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Training data are used for fitting learnable parameters and validation data for tuning non-learnable parameters (Article 10(2-3)). Data governance must include practices on design choices, collection, preparation, assumptions, availability and bias assessment and mitigation (Article 10(2)). Data sets must be relevant, representative, error-free and statistically appropriate for the intended purpose and context (Article 10(2-3), Article 10(4))."
+    },
+    {
+      "id": "technical-documentation",
+      "question": "What technical documentation must be drawn up for a high-risk AI system?",
+      "answerable": true,
+      "expected_articles": [
+        "11"
+      ],
+      "retrieved_articles": [
+        "11",
+        "18",
+        "17",
+        "16"
+      ],
+      "cited": [
+        "11"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The provider must prepare a single technical documentation, drawn up before the high-risk AI system is placed on the market and kept up to date, which contains at least the elements set out in Annex IV (SMEs may use a simplified form). (Article 11(1))"
+    },
+    {
+      "id": "human-oversight",
+      "question": "What are the requirements for human oversight of high-risk AI systems?",
+      "answerable": true,
+      "expected_articles": [
+        "14"
+      ],
+      "retrieved_articles": [
+        "14",
+        "26"
+      ],
+      "cited": [
+        "14",
+        "26"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Human oversight must let natural persons effectively monitor, understand and intervene in the system (Art 14(1-2); 14(4); 14(3)). Deployers must assign competent, trained staff with authority and support (Art 26(3)). Measures must match risk, autonomy and context, either built into the system by the provider or implemented by the deployer (Art 14(3); 14(4-5))."
+    },
+    {
+      "id": "deployer-obligations",
+      "question": "What obligations apply to deployers of high-risk AI systems?",
+      "answerable": true,
+      "expected_articles": [
+        "26"
+      ],
+      "retrieved_articles": [
+        "26"
+      ],
+      "cited": [
+        "26"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Deployers must use the system per instructions (Article 26(1-2)), assign competent human oversight (Article 26(1-2)), monitor operation and inform providers/authorities of risks or incidents (Article 26(5)), inform affected natural persons (Article 26(11-12)), cooperate with authorities (Article 26(11-12)), ensure input data relevance (Article 26(3-4)), and public authorities must register the system and not use unregistered AI (Article 26(8))."
+    },
+    {
+      "id": "gpai-obligations",
+      "question": "What must providers of general-purpose AI models do?",
+      "answerable": true,
+      "expected_articles": [
+        "53"
+      ],
+      "retrieved_articles": [
+        "53",
+        "55"
+      ],
+      "cited": [
+        "53"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Providers must keep up-to-date technical documentation, provide information so AI system providers understand the model\u2019s capabilities and limits, adopt a copyright compliance policy, cooperate with the Commission and national authorities, and for systemic-risk models must perform standardised evaluations, adversarial testing, risk assessment, incident reporting and ensure cybersecurity, plus publish a detailed training-data summary (Art 53(1), 53(3-4), 55(1))."
+    },
+    {
+      "id": "systemic-risk",
+      "question": "When is a general-purpose AI model considered to pose systemic risk?",
+      "answerable": true,
+      "expected_articles": [
+        "51"
+      ],
+      "retrieved_articles": [
+        "51",
+        "3",
+        "52"
+      ],
+      "cited": [
+        "51",
+        "52"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "An AI model is deemed to pose systemic risk if it meets the high-impact capabilities condition in Article 51(1)(a) or after a Commission decision or qualified alert, has equivalent capabilities (Article 51(1)). If the provider cannot demonstrate the absence of systemic risk, the Commission may deem it to pose systemic risk (Article 52(3))."
+    },
+    {
+      "id": "sandboxes",
+      "question": "What is an AI regulatory sandbox?",
+      "answerable": true,
+      "expected_articles": [
+        "57",
+        "58"
+      ],
+      "retrieved_articles": [
+        "57",
+        "3",
+        "58"
+      ],
+      "cited": [
+        "3",
+        "57"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "An AI regulatory sandbox is a controlled framework set up by a competent authority that lets providers develop, train, validate and test innovative AI systems for a limited time under regulatory supervision, fostering innovation in a supervised environment (Article 3(55)) (Article 57(5))."
+    },
+    {
+      "id": "fundamental-rights-assessment",
+      "question": "Who must carry out a fundamental rights impact assessment?",
+      "answerable": true,
+      "expected_articles": [
+        "27"
+      ],
+      "retrieved_articles": [
+        "27",
+        "77"
+      ],
+      "cited": [
+        "27"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Deployers of high-risk AI systems-i.e., bodies governed by public law, private entities providing public services, and those covered by points 5(b) and 5(c) of Annex III-must carry out the assessment. (Article 27(1))"
+    },
+    {
+      "id": "serious-incidents",
+      "question": "How must serious incidents be reported?",
+      "answerable": true,
+      "expected_articles": [
+        "73"
+      ],
+      "retrieved_articles": [
+        "73"
+      ],
+      "cited": [
+        "73"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Incidents must be reported immediately after a causal link is established, and no later than 15 days after awareness (Article 73(1-2)). For widespread or serious incidents, report within two days of awareness (Article 73(3)). Market surveillance authorities must be notified, and the Commission must be informed of any serious incident (Article 73(7), 73(10-11))."
+    },
+    {
+      "id": "accuracy-cybersecurity",
+      "question": "What accuracy, robustness and cybersecurity requirements apply?",
+      "answerable": true,
+      "expected_articles": [
+        "15"
+      ],
+      "retrieved_articles": [
+        "15",
+        "13"
+      ],
+      "cited": [
+        "15"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "High-risk AI systems must be designed to achieve appropriate accuracy, robustness and cybersecurity and remain consistent throughout their lifecycle (Article 15(1-2)). Their accuracy metrics must be declared in the instructions of use (Article 15(3-4)). They must be resilient to errors, using redundancy and fail-safe measures, and learning systems must mitigate feedback-loop risks (Article 15(3-4))."
+    },
+    {
+      "id": "complaints",
+      "question": "Can someone lodge a complaint about an AI system?",
+      "answerable": true,
+      "expected_articles": [
+        "85"
+      ],
+      "retrieved_articles": [
+        "89",
+        "85",
+        "50",
+        "44",
+        "81"
+      ],
+      "cited": [
+        "85"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Yes. Any natural or legal person may submit a complaint to the market surveillance authority (Article 85)."
+    },
+    {
+      "id": "right-to-explanation",
+      "question": "Do individuals have a right to an explanation of a decision made about them?",
+      "answerable": true,
+      "expected_articles": [
+        "86"
+      ],
+      "retrieved_articles": [
+        "86",
+        "100",
+        "50"
+      ],
+      "cited": [
+        "86"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Yes. Individuals have a right to a clear and meaningful explanation of the AI system\u2019s role and the decision (Article 86(1))."
+    },
+    {
+      "id": "importer-obligations",
+      "question": "What obligations do importers of AI systems have?",
+      "answerable": true,
+      "expected_articles": [
+        "23"
+      ],
+      "retrieved_articles": [
+        "23",
+        "25"
+      ],
+      "cited": [
+        "23"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "Importers must display name, trade name or trademark and contact address (Art 23(3-4)), ensure storage/transport does not affect compliance (Art 23(3-4)), verify conformity and appoint an authorised representative (Art 23(1)), may not place non-conforming systems on the market (Art 23(2)), inform provider, rep and authorities of risk (Art 23(2)), retain certificates, instructions and EU declaration for 10 years and provide information to authorities (Art 23(5-7)), and cooperate with authorities (Art 23(5-7))."
+    },
+    {
+      "id": "ai-literacy",
+      "question": "What is AI literacy and who must ensure it?",
+      "answerable": true,
+      "expected_articles": [
+        "4"
+      ],
+      "retrieved_articles": [
+        "4",
+        "3",
+        "50",
+        "66"
+      ],
+      "cited": [
+        "3",
+        "4"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "AI literacy is skills, knowledge and understanding that enable informed AI deployment and awareness of opportunities, risks and harms (Article 3(56)). Providers and deployers of AI systems must ensure a sufficient level of AI literacy for their staff and others dealing with the system (Article 4)."
+    },
+    {
+      "id": "logging",
+      "question": "What logging and record-keeping is required for high-risk AI systems?",
+      "answerable": true,
+      "expected_articles": [
+        "12",
+        "19"
+      ],
+      "retrieved_articles": [
+        "12",
+        "19",
+        "26",
+        "16"
+      ],
+      "cited": [
+        "12",
+        "19"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "High-risk AI systems must automatically record events throughout their lifespan (Article 12(1-2)), capturing use periods, database references, matched input data and persons verifying results (Article 12(3)), and retain those logs for at least six months (Article 19(1), 26(6)). Providers and deployers must keep the logs under their control for this period (Article 12(1-2), 19(1), 26(6))."
+    },
+    {
+      "id": "gpai-fines",
+      "question": "What fines can be imposed on providers of general-purpose AI models?",
+      "answerable": true,
+      "expected_articles": [
+        "101"
+      ],
+      "retrieved_articles": [
+        "101",
+        "53",
+        "92"
+      ],
+      "cited": [
+        "101"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "We need to answer: \"What fines can be imposed on providers of general-purpose AI models?\" Use only provided extracts. The relevant info is in Article 101(1) and maybe (2-4) but the fine amount is described in (1). So answer: fines not exceeding 3% of annual total worldwide turnover in preceding financial year or EUR 15,000,000, whichever is higher. Also mention that fines are effective, proportionate and dissuasive (Article 101(2-4)). But question asks \"What fines can be imposed\". So answer: up to 3% of turnover or \u20ac15 million, whichever is higher. Cite (Article 101(1)). Also maybe mention that fines are effective, proportionate and dissuasive (Article 101(2-4)). But keep within 60 words. Let's craft: \"The Commission may impose fines up to 3 % of the provider\u2019s annual worldwide turnover in the preceding financial year or up to \u20ac15 million, whichever is higher.\" Cite (Article 101(1)). That's within 60 words. Let's count: \"The Commission may impose fines up to 3 % of the provider\u2019s annual worldwide turnover in the preceding financial year or up to \u20ac15 million, whichever is higher. (Article 101(1))\" That'scores in user user?? Wait?? Wait, user: user:.? user?... Let me [ut... the user? Actually? In? Not answer??<unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk> 101(1) specifies the maximum fine amount for providers of general-purpose AI models, which is the higher of 3% of their annual total worldwide turnover or EUR 15,000,000<unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk><unk> (Article 101(1))"
+    },
+    {
+      "id": "ce-marking",
+      "question": "What does CE marking of a high-risk AI system involve?",
+      "answerable": true,
+      "expected_articles": [
+        "48"
+      ],
+      "retrieved_articles": [
+        "48",
+        "16",
+        "24",
+        "6"
+      ],
+      "cited": [
+        "48"
+      ],
+      "grounded": true,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The CE marking must be affixed visibly, legibly and indelibly to the high-risk AI system, its packaging or documentation, and, where not possible, follow Article 48(3-5). It must be followed by the notified-body identification number (Article 48(3-5)) and, for digital systems, be accessible via the interface or a machine-readable code (Article 48(1-2))."
+    },
+    {
+      "id": "oos-capital",
+      "question": "What is the capital of France?",
+      "answerable": false,
+      "expected_articles": [],
+      "retrieved_articles": [],
+      "cited": [],
+      "grounded": false,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The provided extracts do not answer this question."
+    },
+    {
+      "id": "oos-pytorch",
+      "question": "How do I train a convolutional neural network in PyTorch?",
+      "answerable": false,
+      "expected_articles": [],
+      "retrieved_articles": [],
+      "cited": [],
+      "grounded": false,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The provided extracts do not answer this question."
+    },
+    {
+      "id": "oos-football",
+      "question": "Who won the 2022 FIFA World Cup?",
+      "answerable": false,
+      "expected_articles": [],
+      "retrieved_articles": [],
+      "cited": [],
+      "grounded": false,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The provided extracts do not answer this question."
+    },
+    {
+      "id": "oos-recipe",
+      "question": "How do I make carbonara sauce?",
+      "answerable": false,
+      "expected_articles": [],
+      "retrieved_articles": [],
+      "cited": [],
+      "grounded": false,
+      "passed": true,
+      "error": null,
+      "failure_reason": null,
+      "answer": "The provided extracts do not answer this question."
+    }
+  ]
+}
